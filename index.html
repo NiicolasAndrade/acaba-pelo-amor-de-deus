@@ -31,7 +31,7 @@
             <ul class="nav d-flex">
                 <li><a href="#home">Início</a></li>
                 <li id="cursos">
-                    <a href="cursos/Cursos.html">Cursos</a>
+                    <a href="Cursos.html">Cursos</a>
                     <ul class="subtopicos">
                         <li>Introdução à finanças</li>
                         <li>Dicas para orçamento</li>
@@ -221,7 +221,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             // Botão "Voltar ao Topo"
             var btnVoltarAoTopo = document.getElementById("btnVoltarAoTopo");
-
+    
             window.addEventListener("scroll", function () {
                 if (window.scrollY > 300) {
                     btnVoltarAoTopo.style.display = "block";
@@ -229,33 +229,42 @@
                     btnVoltarAoTopo.style.display = "none";
                 }
             });
-
+    
             btnVoltarAoTopo.addEventListener("click", function () {
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
                 });
             });
-
+    
             // Submenu de cursos
             var cursosNavItem = document.getElementById("cursos");
             var subtopicos = cursosNavItem.querySelector(".subtopicos");
-
-            cursosNavItem.addEventListener("mouseover", function () {
-                subtopicos.style.display = "block";
+            var cursosLinkClicked = false;
+    
+            cursosNavItem.addEventListener("click", function () {
+                if (!cursosLinkClicked) {
+                    subtopicos.style.display = "block";
+                } else {
+                    window.location.href = "Cursos.html";
+                }
+    
+                cursosLinkClicked = !cursosLinkClicked;
             });
-
+    
             cursosNavItem.addEventListener("mouseout", function () {
-                subtopicos.style.display = "none";
+                if (!cursosLinkClicked) {
+                    subtopicos.style.display = "none";
+                }
             });
         });
         new window.VLibras.Widget({
-        rootPath: '/app',
-        personalization: 'https://vlibras.gov.br/config/default_logo.json',
-        opacity: 0.5,
-        position: 'L',
-        avatar: 'random',
-    });
+            rootPath: '/app',
+            personalization: 'https://vlibras.gov.br/config/default_logo.json',
+            opacity: 0.5,
+            position: 'L',
+            avatar: 'random',
+        });
     </script>
 </body>
 
